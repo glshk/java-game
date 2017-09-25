@@ -12,6 +12,6 @@ public class App
         View view = new View();
         Controller controller = new Controller(model, view);
         controller.run();
-//        System.out.println( "Hello World!" );
+        System.out.println( "Hello World!" );
     }
 }
