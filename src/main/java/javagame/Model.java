@@ -2,9 +2,6 @@ package javagame;
 
 import java.util.Random;
 
-/**
- * Created by Sofiia_Hlushko on 9/25/2017.
- */
 public class Model {
     private String stringValue = "";
     private Integer secretNumber;

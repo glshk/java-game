@@ -3,9 +3,6 @@ package javagame;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- * Created by Sofiia_Hlushko on 9/25/2017.
- */
 public class Controller {
     private Model model;
     private View view;
@@ -16,41 +13,40 @@ public class Controller {
     }
 
     public void run() {
-        view.printMessage(view.GREETING);
+        view.printMessage(View.GREETING);
         Scanner scanner = new Scanner(System.in);
         read(scanner);
-        view.printMessage(view.CONGRATULATIONS + model.getSecretNumber());
+        view.printMessage(View.CONGRATULATIONS + model.getSecretNumber());
     }
 
     private void read(Scanner scanner) {
-//        Integer number = scanner.nextInt();
-            view.printMessage(view.BOUNDS + model.getMinValue() + " " + model.getMaxValue());
-            view.printMessage(model.getSecretNumber().toString());
-            try {
-                Integer number = readNumber(scanner);
-                if (number == model.getSecretNumber()) {
-                    return;
-                } else {
-                    changeBounds(number);
-                    read(scanner);
-                }
-            } catch (NumberOutOfBoundsException e) {
-                view.printMessage(e.getMessage());
-                read(scanner);
-            } catch (InputMismatchException e) {
-                view.printMessage(view.ENTER_NUMBER);
-                scanner.nextLine();
+        view.printMessage(View.BOUNDS + model.getMinValue() + " " + model.getMaxValue());
+        view.printMessage(model.getSecretNumber().toString());
+        try {
+            Integer number = readNumber(scanner);
+            if (number.equals(model.getSecretNumber())) {
+                return;
+            } else {
+                changeBounds(number);
                 read(scanner);
             }
+        } catch (NumberOutOfBoundsException e) {
+            view.printMessage(e.getMessage());
+            read(scanner);
+        } catch (InputMismatchException e) {
+            view.printMessage(View.ENTER_NUMBER);
+            scanner.nextLine();
+            read(scanner);
+        }
     }
 
     private Integer readNumber(Scanner scanner) throws NumberOutOfBoundsException {
-                Integer tempNumber = scanner.nextInt();
-                if (tempNumber >= model.getMinValue() && tempNumber <= model.getMaxValue()) {
-                    return tempNumber;
-                } else {
-                    throw new NumberOutOfBoundsException(view.WRONG_BOUNDS);
-                }
+        Integer tempNumber = scanner.nextInt();
+        if (tempNumber >= model.getMinValue() && tempNumber <= model.getMaxValue()) {
+            return tempNumber;
+        } else {
+            throw new NumberOutOfBoundsException(View.WRONG_BOUNDS);
+        }
     }
 
     private void changeBounds(Integer number) {
