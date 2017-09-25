@@ -14,6 +14,7 @@ public class Controller {
 
     public void run() {
         view.printMessage(View.GREETING);
+//        view.printMessage(model.getSecretNumber().toString());
         Scanner scanner = new Scanner(System.in);
         read(scanner);
         view.printMessage(View.CONGRATULATIONS + model.getSecretNumber());
@@ -21,7 +22,6 @@ public class Controller {
 
     private void read(Scanner scanner) {
         view.printMessage(View.BOUNDS + model.getMinValue() + " " + model.getMaxValue());
-        view.printMessage(model.getSecretNumber().toString());
         try {
             Integer number = readNumber(scanner);
             if (number.equals(model.getSecretNumber())) {
